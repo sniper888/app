@@ -7,11 +7,11 @@ namespace App\Models;
  *
  * PHP version 7.0
  */
-class Varos extends \Core\Model {
+class Blog extends \Core\Model {
     
     //adatbázis tábla neve
     public static function tableName() {
-        return 'varos';
+        return 'blog';
     }
 
 }

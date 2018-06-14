@@ -19,7 +19,7 @@ class Config {
      * Database name
      * @var string
      */
-    const DB_NAME = 'varosok';
+    const DB_NAME = 'app';
 
     /**
      * Database user

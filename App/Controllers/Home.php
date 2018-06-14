@@ -15,14 +15,16 @@ class Home extends \Core\Controller {
      * @return void
      */
     public function indexAction() {
-
-        $cim = "Ez itt a főoldal";
-        $varosok = \App\Models\Varos::model()->findAll();
-        \Core\View::render('index', ["valtozo" => $cim, "varosok" => $varosok]);
+        $models = \App\Models\Blog::model()->findAll(4);
+        \Core\View::render('index', ['kiscica' => $models]);
     }
 
     public function kapcsolatAction() {
         \Core\View::render('kapcsolat');
+    }
+
+    public function rolunkAction() {
+        \Core\View::render('rolunk');
     }
 
 }

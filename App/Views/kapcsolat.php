@@ -1,28 +1,101 @@
-<div class="terkep">
-    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2658.4122509911454!2d22.07448231565179!3d48.21793587922994!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4738ece400d3b80f%3A0x8b055bd459e1c5d6!2sKisv%C3%A1rda%2C+Vir%C3%A1gh+Ferenc+u.+18%2C+4600!5e0!3m2!1shu!2shu!4v1525334199798" width="95%" height="300" frameborder="0" style="border:0" allowfullscreen></iframe>
-</div>
-<div class="sor">
-    <div class="szeles50">
-        <ul class="kapcsszov">
-            <li>Telefon 1: 06 20 11 22 333</li>
-            <li>Telefon 2: 06 20 11 22 334</li>
-            <li>Email cím: valami@valami.hu</li>
-        </ul>
+<section id="subintro">
+    <div class="jumbotron subhead" id="overview">
+        <div class="container">
+            <div class="row">
+                <div class="span12">
+                    <div class="centered">
+                        <h3>Contact page</h3>
+                        <p>
+                            Lorem ipsum dolor sit amet, modus salutatus honestatis ex mea. Sit cu probo putant. Nam ne impedit atomorum.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
-    <div class="szeles50">
-        <h1>Keressen fel!</h1>
-        <p class="szoveg16">Lorem ipsum dolor sit amet</p>
-
-        <form>
-            <table>
-                <tr>
-                    <td>Név:</td>
-                    <td><input type="text" name="nev" /></td>
-                </tr>
-            </table>
-        </form>
-
+</section>
+<section id="breadcrumb">
+    <div class="container">
+        <div class="row">
+            <div class="span12">
+                <ul class="breadcrumb notop">
+                    <li><a href="#">Home</a><span class="divider">/</span></li>
+                    <li class="active">Contact</li>
+                </ul>
+            </div>
+        </div>
     </div>
-</div>
-<?php
-print_r(\Core\Router::getBaseUrl())?>
+</section>
+<section id="maincontent">
+    <div class="container">
+        <div class="row">
+            <div class="span4">
+                <aside>
+                    <div class="widget">
+                        <h4>Get in touch with us</h4>
+                        <ul>
+                            <li><label><strong>Phone : </strong></label>
+                                <p>
+                                    +900 888 707 123
+                                </p>
+                            </li>
+                            <li><label><strong>Email : </strong></label>
+                                <p>
+                                    name@yoursite.com
+                                </p>
+                            </li>
+                            <li><label><strong>Adress : </strong></label>
+                                <p>
+                                    Pasar kambing 58 Suite X.110 Peterongan Semarang, Indonesia
+                                </p>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="widget">
+                        <h4>Social network</h4>
+                        <ul class="social-links">
+                            <li><a href="#" title="Twitter"><i class="icon-rounded icon-32 icon-twitter"></i></a></li>
+                            <li><a href="#" title="Facebook"><i class="icon-rounded icon-32 icon-facebook"></i></a></li>
+                            <li><a href="#" title="Google plus"><i class="icon-rounded icon-32 icon-google-plus"></i></a></li>
+                            <li><a href="#" title="Linkedin"><i class="icon-rounded icon-32 icon-linkedin"></i></a></li>
+                            <li><a href="#" title="Pinterest"><i class="icon-rounded icon-32 icon-pinterest"></i></a></li>
+                        </ul>
+                    </div>
+                </aside>
+            </div>
+            <div class="span8">
+                <div id="google-map" data-latitude="40.713417" data-longitude="-74.0092125"></div>
+
+                <div class="spacer30"></div>
+
+                <div id="sendmessage">Your message has been sent. Thank you!</div>
+                <div id="errormessage"></div>
+                <form action="" method="post" role="form" class="contactForm">
+                    <div class="row">
+                        <div class="span4 form-group">
+                            <input type="text" name="name" class="form-control" id="name" placeholder="Your Name" data-rule="minlen:4" data-msg="Please enter at least 4 chars" />
+                            <div class="validation"></div>
+                        </div>
+
+                        <div class="span4 form-group">
+                            <input type="email" class="form-control" name="email" id="email" placeholder="Your Email" data-rule="email" data-msg="Please enter a valid email" />
+                            <div class="validation"></div>
+                        </div>
+                        <div class="span8 form-group">
+                            <input type="text" class="form-control" name="subject" id="subject" placeholder="Subject" data-rule="minlen:4" data-msg="Please enter at least 8 chars of subject" />
+                            <div class="validation"></div>
+                        </div>
+                        <div class="span8 form-group">
+                            <textarea class="form-control" name="message" rows="5" data-rule="required" data-msg="Please write something for us" placeholder="Message"></textarea>
+                            <div class="validation"></div>
+                            <div class="text-center">
+                                <button class="btn btn-color btn-rounded" type="submit">Send message</button>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+
+            </div>
+        </div>
+    </div>
+</section>
