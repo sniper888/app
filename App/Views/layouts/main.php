@@ -49,13 +49,16 @@
                         <div class="navigation">
                             <nav>
                                 <ul class="nav topnav">
-                                    <li class="dropdown active">
+                                    <li <?= ($page == "index" ? 'class="active"' : '') ?>>
                                         <a href="<?php echo $baseurl ?>">Főoldal</a>
-                                    </li>  
-                                    <li>
+                                    </li> 
+                                    <li <?= ($page == "portfolio" ? 'class="active"' : '') ?>>
+                                        <a href="<?php echo $baseurl ?>home/portfolio">Portfolió</a>
+                                    </li>                                    
+                                    <li <?= ($page == "rolunk" ? 'class="active"' : '') ?>>
                                         <a href="<?php echo $baseurl ?>home/rolunk">Rólunk</a>
                                     </li>
-                                    <li>
+                                    <li <?= ($page == "kapcsolat" ? 'class="active"' : '') ?>>
                                         <a href="<?php echo $baseurl ?>home/kapcsolat">Kapcsolat</a>
                                     </li>
                                 </ul>
@@ -149,7 +152,7 @@
         <script src="<?php echo $baseurl ?>assets/js/hover/jquery-hover-effect.js"></script>
         <script src="<?php echo $baseurl ?>assets/js/hover/setting.js"></script>
         <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD8HeI8o-c1NppZA-92oYlXakhDPYR7XMY"></script>
-        
+
         <!-- Template Custom JavaScript File -->
         <script src="<?php echo $baseurl ?>assets/js/custom.js"></script>
 

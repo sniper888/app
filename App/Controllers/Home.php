@@ -15,16 +15,24 @@ class Home extends \Core\Controller {
      * @return void
      */
     public function indexAction() {
+        $page = "index";
         $models = \App\Models\Blog::model()->findAll(4);
-        \Core\View::render('index', ['kiscica' => $models]);
+        \Core\View::render('index', ['kiscica' => $models, 'page' => $page]);
     }
 
     public function kapcsolatAction() {
-        \Core\View::render('kapcsolat');
+        $page = "kapcsolat";
+        \Core\View::render('kapcsolat', ['page' => $page]);
     }
 
     public function rolunkAction() {
-        \Core\View::render('rolunk');
+        $page = "rolunk";
+        \Core\View::render('rolunk', ['page' => $page]);
+    }
+
+    public function portfolioAction() {
+        $page = "portfolio";
+        \Core\View::render('portfolio', ['page' => $page]);
     }
 
 }

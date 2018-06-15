@@ -20,7 +20,7 @@ class View {
     public static function render($view, $args = [], $layout = "main", $return = false) {
         $output = self::renderPartial($view, $args, true);
         if (($layoutFile = self::getLayoutFile($layout)) !== false)
-            $output = self::renderInternal($layoutFile, array('content' => $output), true);
+            $output = self::renderInternal($layoutFile, array('content' => $output)+$args, true);
         if ($return)
             return $output;
         else
