@@ -27,10 +27,31 @@ class Admin extends \Core\Controller {
     }
 
     public function belepesAction() {
-        
-        
-        
-        \Core\View::render('admin/belepes', [], 'admin');
+        $hiba = '';
+        if ($_SERVER["REQUEST_METHOD"] == "POST") {
+            if (empty($_POST['email'])) {
+                $hiba .= 'A e-mail kitöltése kötelező!<br>';
+            }
+            if (empty($_POST['jelszo'])) {
+                $hiba .= 'A jelszó kitöltése kötelező!<br>';
+            }
+            if (empty($hiba)) {
+                $felhasznalo = false;
+                if ($felhasznalo) {
+                    if (password_verify($_POST['jelszo'], $felhasznalo['jelszo'])) {
+                        //helyes jelszó
+                        $_SESSION['belepett'] = true;
+                        header("Location: " . \Core\Router::getBaseUrl() . "admin/index");
+                    } else {
+                        $hiba .= 'Hibás név vagy jelszó!';
+                    }
+                } else {
+                    //nincs felhasználó
+                    $hiba .= 'Hibás név vagy jelszó!';
+                }
+            }
+        }
+        View::render('admin/belepes', ["hiba" => $hiba, 'action' => ''], 'admin');
     }
 
 }
