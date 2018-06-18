@@ -51,7 +51,7 @@ class Admin extends \Core\Controller {
                 }
             }
         }
-        View::render('admin/belepes', ["hiba" => $hiba, 'action' => ''], 'admin');
+        \Core\View::render('admin/belepes', ["hiba" => $hiba, 'action' => ''], 'admin');
     }
 
 }
