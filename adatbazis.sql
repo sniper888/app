@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Gép: 127.0.0.1:3306
--- Létrehozás ideje: 2018. Jún 14. 08:19
+-- Létrehozás ideje: 2018. Jún 19. 10:48
 -- Kiszolgáló verziója: 5.7.21
 -- PHP verzió: 7.1.14
 
@@ -48,6 +48,27 @@ INSERT INTO `blog` (`id`, `cim`, `rovidleiras`, `leiras`, `kep`, `datum`) VALUES
 (2, 'Example post image format', 'Lorem ipsum dolor sit amet nec, consectetuer adipiscing elit. Aenean commodo ligula eget dolor aenean massa.', '', 'assets/img/dummies/blog2.jpg', '2013-09-17'),
 (3, 'Amazing video post format', 'Lorem ipsum dolor sit amet nec, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque.', '', 'assets/img/dummies/blog2.jpg', '2013-09-17'),
 (4, 'Slider post format with flexslider', 'Lorem ipsum dolor sit amet nec, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque.', '', 'assets/img/dummies/work1.jpg', '2013-09-17');
+
+-- --------------------------------------------------------
+
+--
+-- Tábla szerkezet ehhez a táblához `felhasznalok`
+--
+
+DROP TABLE IF EXISTS `felhasznalok`;
+CREATE TABLE IF NOT EXISTS `felhasznalok` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `email` varchar(255) NOT NULL,
+  `jelszo` varchar(255) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+
+--
+-- A tábla adatainak kiíratása `felhasznalok`
+--
+
+INSERT INTO `felhasznalok` (`id`, `email`, `jelszo`) VALUES
+(1, 'admin@mail.com', '$2y$10$1mVsV3Q7RCn6pY7X4MCzlOjS7pyfsPJSmM2TqoZAJgrEeYgtuXCem');
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

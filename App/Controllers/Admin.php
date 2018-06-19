@@ -36,9 +36,9 @@ class Admin extends \Core\Controller {
                 $hiba .= 'A jelszó kitöltése kötelező!<br>';
             }
             if (empty($hiba)) {
-                $felhasznalo = false;
+                $felhasznalo = \App\Models\Felhasznalok::model()->sql("SELECT * FROM " . \App\Models\Felhasznalok::tableName() . " WHERE email='" . $_POST['email']."'")->findOne();
                 if ($felhasznalo) {
-                    if (password_verify($_POST['jelszo'], $felhasznalo['jelszo'])) {
+                    if (password_verify($_POST['jelszo'], $felhasznalo->jelszo)) {
                         //helyes jelszó
                         $_SESSION['belepett'] = true;
                         header("Location: " . \Core\Router::getBaseUrl() . "admin/index");
