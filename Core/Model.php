@@ -147,7 +147,7 @@ abstract class Model {
      */
     public function findByPk($pk) {
         $db = static::getDB();
-        $stmt = $db->query('SELECT * FROM ' . static::tableName());
+        $stmt = $db->query('SELECT * FROM ' . static::tableName() . " WHERE " . static::getPrimaryKey() . "=" . $pk);
         $row = $stmt->fetch(PDO::FETCH_ASSOC);
         if ($row) {
             foreach ($row as $k => $v) {

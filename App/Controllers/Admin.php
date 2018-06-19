@@ -85,7 +85,7 @@ class Admin extends \Core\Controller {
                 $hiba .= 'A leírás megadása kötelező';
             }
             if (empty($hiba)) {
-                \App\Models\Blog::postment($_POST, (isset($_GET['id']) ? $_GET['id'] : null));
+                \App\Models\Blog::postMent($_POST, (isset($_GET['id']) ? $_GET['id'] : null));
                 header("Location: " . \Core\Router::getBaseUrl() . "admin/blog");
             }
         }
@@ -95,7 +95,7 @@ class Admin extends \Core\Controller {
     //post törlése
     public function posttorolAction() {
         $this->checkBelepett();
-        \App\Models\Blog::torolPost($_GET['id']);
+        \App\Models\Blog::postTorol($_GET['id']);
         header("Location: " . \Core\Router::getBaseUrl() . "admin/blog");
     }
 
