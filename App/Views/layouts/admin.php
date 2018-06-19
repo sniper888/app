@@ -33,6 +33,8 @@
                 </div><!-- /.navbar-collapse -->
             </div><!-- /.container-fluid -->
         </nav>
-        <?php echo $content ?> 
+        <div class="container">
+            <?php echo $content ?> 
+        </div>
     </body>
 </html>

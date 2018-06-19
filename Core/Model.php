@@ -15,6 +15,7 @@ abstract class Model {
     private static $_models = array();
     private $_attributes = array();
     private $sql;
+    private $params = array();
 
     public function __construct() {
         
@@ -32,6 +33,14 @@ abstract class Model {
         }
     }
 
+    public function __isset($var) {
+        if (isset($this->_attributes[$var])) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
     public static function model($className = null) {
         if ($className == null)
             $className = get_called_class();
@@ -43,8 +52,9 @@ abstract class Model {
         }
     }
 
-    public function sql($sql) {
+    public function sql($sql, array $params) {
         $this->sql = $sql;
+        $this->params = $params;
         return $this;
     }
 
@@ -86,17 +96,24 @@ abstract class Model {
         if ($limit != null) {
             $this->sql .= ' limit ' . $limit;
         }
-        $stmt = $db->query($this->sql);
+        $stmt = $db->prepare($this->sql);
+        if (!empty($this->params)) {
+            foreach ($this->params as $key => $value)
+                $stmt->bindValue($key, $value, PDO::PARAM_STR);
+        }
+        $stmt->execute();
         $rows = $stmt->fetchAll(PDO::FETCH_ASSOC);
-        foreach ($rows as $row) {
-            $class = get_called_class();
-            $result = new $class;
+        if ($rows) {
+            foreach ($rows as $row) {
+                $class = get_called_class();
+                $result = new $class;
 
-            foreach ($row as $k => $v) {
-                $result->$k = $v;
+                foreach ($row as $k => $v) {
+                    $result->$k = $v;
+                }
+
+                $results[] = $result;
             }
-
-            $results[] = $result;
         }
         return $results;
     }
@@ -108,11 +125,17 @@ abstract class Model {
      */
     public function findOne() {
         $db = static::getDB();
-        $stmt = $db->query($this->sql);
+        $stmt = $db->prepare($this->sql);
+        if (!empty($this->params)) {
+            foreach ($this->params as $key => $value)
+                $stmt->bindValue($key, $value, PDO::PARAM_STR);
+        }
+        $stmt->execute();
         $row = $stmt->fetch(PDO::FETCH_ASSOC);
-
-        foreach ($row as $k => $v) {
-            $this->$k = $v;
+        if ($row) {
+            foreach ($row as $k => $v) {
+                $this->$k = $v;
+            }
         }
         return $this;
     }
@@ -126,8 +149,10 @@ abstract class Model {
         $db = static::getDB();
         $stmt = $db->query('SELECT * FROM ' . static::tableName());
         $row = $stmt->fetch(PDO::FETCH_ASSOC);
-        foreach ($row as $k => $v) {
-            $this->$k = $v;
+        if ($row) {
+            foreach ($row as $k => $v) {
+                $this->$k = $v;
+            }
         }
         return $this;
     }
