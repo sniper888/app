@@ -1,3 +1,4 @@
+<?php $baseurl = \Core\Router::getBaseUrl(); ?>
 <section id="intro">
     <div class="jumbotron masthead">
         <div class="container">
@@ -143,7 +144,7 @@
                     <div class="span3">
                         <div class="post-image">
                             <a href="post_right_sidebar.html">
-                                <img src="<?php echo $model->kep ?>" alt="">
+                                <img src="<?php echo $baseurl . "assets/img/" . $model->kep ?>" alt="">
                             </a>
                         </div>
                         <div class="entry-meta">
@@ -157,7 +158,7 @@
                                 <h5 class="title"><?php echo $model->cim ?></h5>
                             </a>
                             <p>
-                             <?php echo $model->rovidleiras ?>   
+                                <?php echo $model->rovidleiras ?>   
                             </p>
                         </div>
                         <!-- end .entry-body -->

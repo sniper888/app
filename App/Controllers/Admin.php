@@ -75,7 +75,7 @@ class Admin extends \Core\Controller {
         $hiba = '';
         if (!empty($_GET['id'])) {
             $post = \App\Models\Blog::model()->findByPk($_GET['id']);
-        }
+        }       
         if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $hir = $_POST;
             if (empty($_POST['cim'])) {
@@ -84,6 +84,45 @@ class Admin extends \Core\Controller {
             if (empty($_POST['leiras'])) {
                 $hiba .= 'A leírás megadása kötelező';
             }
+            if (isset($_FILES["ujkep"])) {
+                $target_dir = BASE_PATH . "/assets/img/";
+                $target_file = $target_dir . basename($_FILES["ujkep"]["name"]);
+                $uploadOk = 1;
+                $imageFileType = strtolower(pathinfo($target_file, PATHINFO_EXTENSION));
+                // Kép ellenőrzése valóban kép e?
+                $check = getimagesize($_FILES["ujkep"]["tmp_name"]);
+                if ($check == false) {
+                    $hiba .= 'A fájl nem kép<br>';
+                    $uploadOk = 1;
+                }
+                // Kép létezik e
+                if (file_exists($target_file)) {
+                    $hiba .= 'A kép már létezik<br>';
+                    $uploadOk = 0;
+                }
+                // Elfogadott képtípusok
+                if ($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg" && $imageFileType != "gif") {
+                    $hiba .= 'Csak JPG, JPEG, PNG és GIF fájlok engedélyezettek<br>';
+                    $uploadOk = 0;
+                }
+                // van e hiba?
+                if ($uploadOk == 0) {
+                    $hiba .= 'A kép nincs feltöltve<br>';
+                    // ha minden renddben mentünk
+                } else {
+                    if (!move_uploaded_file($_FILES["ujkep"]["tmp_name"], $target_file)) {
+                        $hiba .= 'Hiba a feltöltéskor<br>';
+                        $_POST['kep'] = (!empty($post->kep) ? $post->kep : '');
+                    } else {
+                        // !csak a kép neve kerül be adatbázisba, 
+                        // kiiratáskor a mapát meg kell adnunk..
+                        $_POST['kep'] = $_FILES["ujkep"]["name"];
+                    }
+                }
+            } else {
+                $_POST['kep'] = (!empty($post->kep) ? $post->kep : '');
+            }
+
             if (empty($hiba)) {
                 \App\Models\Blog::postMent($_POST, (isset($_GET['id']) ? $_GET['id'] : null));
                 header("Location: " . \Core\Router::getBaseUrl() . "admin/blog");

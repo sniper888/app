@@ -1,7 +1,7 @@
 <?php if (!empty($hiba)) { ?>
     <div class="alert alert-danger" role="alert"><?php echo $hiba; ?></div>
 <?php } ?>
-<form method="post">
+<form method="post" enctype="multipart/form-data">
     <table style=" width: 100%">
         <tr>
             <td>Cím: </td>
@@ -17,7 +17,7 @@
         </tr>
         <tr>
             <td>Kép: </td>
-            <td><div class="form-group"><input type="text" name="kep" <?php echo (!empty($post->kep) ? 'value="' . $post->kep . '"' : '') ?> class="form-control"></div></td>
+            <td><div class="form-group"><input type="file" name="ujkep" class="form-control"></div></td>
         </tr>
         <tr>
             <td>Dátum: </td>

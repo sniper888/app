@@ -5,6 +5,7 @@
  *
  * PHP version 7.0
  */
+define('BASE_PATH', __DIR__);
 /**
  * Composer
  */
